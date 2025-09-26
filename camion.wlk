@@ -29,4 +29,18 @@ const carga = []
     method cosasSuperanPeligrosidadDe(unaCosa) =
         carga.filter({c=>c.peligrosidad()>unaCosa.peligrosidad()})
     
+    method exedePesoMaximo() =
+        self.pesoTotal() > 2500
+
+    method puedeCircular(nivelMax) =
+        // Esta es una forma de hacerla 
+        !self.exedePesoMaximo() && 
+        self.todasLasCosasConMasPeligrosidad(nivelMax).isEmpty()
+
+    // EL METODO BETWEEN USA LA INTERSECCION
+    method algunaCosaPesaEntre(valorMin, valorMax) =
+        carga.any({c=>c.peso().between(valorMin, valorMax)})
+    
+    method laCosaMasPesada() = 
+        carga.max({c=>c.peso()}) 
 }
